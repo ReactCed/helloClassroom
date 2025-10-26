@@ -1,0 +1,215 @@
+DONE 1️⃣ User Authentication
+
+What it does:
+
+DONE - Register as Student or Teacher
+ 
+DONE - Login
+
+DONE - Logout
+
+DONE - Session management (JWT or Cookies)
+
+Frontend:
+
+DONE - Register Page (name, email, password, role)
+
+DONE - Login Page (email, password)
+
+DONE - Protected routes (only logged-in users can access classes)
+
+Backend:
+
+DONE - POST /api/register
+
+DONE - POST /api/login
+
+DONE - JWT authentication middleware
+
+DONE - User model: name, email, hashed_password, role
+
+2️⃣ Create & Join Classes
+
+What it does:
+
+DONE - Teachers can create classes (title,  section) - Professor Side
+
+DONE - System generates unique class code - Professor Side
+
+- Students can join classes using the code - Student Side
+
+Frontend:
+
+DONE - CreateClass form (for Teacher)
+
+- JoinClass form (for Student)
+
+- Class dashboard showing enrolled classes
+
+Backend:
+
+DONE - POST /api/classes (Teacher creates)
+
+DONE - POST /api/classes/join (Student joins)
+
+DONE - GET /api/classes (List classes for logged-in user)
+
+DONE - Class model: title, description, section, subject, code, teacher_id, student_ids
+
+3️⃣ Class Stream
+
+What it does:
+
+- Teachers can post announcements - Professor Side 
+
+- Stream shows all posts (latest first) - Professor can edit and delete but the Student only view
+
+Frontend:
+
+- Stream Page: post text, view posts, delete own posts
+
+Backend:
+
+- POST /api/classes/:id/posts
+
+- GET /api/classes/:id/posts
+
+- DELETE /api/posts/:id
+
+- Post model: content, author_id, class_id, timestamp
+
+4️⃣ Assignments
+
+What it does:
+
+- Teacher creates assignments (title, description, due date, attachments) - Professor Side
+
+- Students submit work - Student Side
+
+- Teacher grades & gives feedback - Professor Side
+
+Frontend:
+
+- Create Assignment form (Teacher)
+
+- Submit Assignment form (Student)
+
+- View submissions & grades
+
+Backend:
+
+- POST /api/classes/:id/assignments
+
+- GET /api/classes/:id/assignments
+
+- POST /api/assignments/:id/submit
+
+- POST /api/assignments/:id/grade
+
+- Assignment model: title, description, due_date, attachments
+
+- Submission model: assignment_id, student_id, file, grade, feedback
+
+5️⃣ People Tab
+
+What it does:
+
+- Shows list of students & teachers in a class - Professor & Student Side
+
+Frontend:
+
+- People tab with user list
+
+- Teachers can remove students
+
+Backend:
+
+- GET /api/classes/:id/people
+
+- DELETE /api/classes/:id/people/:userId
+
+6️⃣ Comments
+
+What it does:
+
+- Comment on posts & assignments
+
+Frontend:
+
+- Comment input under each post / assignment
+
+Backend:
+
+- POST /api/posts/:id/comments
+
+- GET /api/posts/:id/comments
+
+- Comment model: content, author_id, parent_id (post or assignment)
+
+7️⃣ Notifications
+
+What it does:
+
+- Students notified about new posts, assignments, grades
+
+Frontend:
+
+- Notification bell or popup
+
+Backend:
+
+- GET /api/notifications
+
+- Push new notifications on post/assignment creation
+
+- Notification model: type, user_id, related_id, read/unread
+
+8️⃣ Profile & Settings
+
+What it does:
+
+- Update profile info (name, photo)
+
+- Change password
+
+Frontend:
+
+- Profile page
+
+Backend:
+
+- PUT /api/user/profile
+
+- PUT /api/user/password
+
+9️⃣ File Uploads
+
+What it does:
+
+- Attach files to posts & submissions
+
+Frontend:
+
+- File picker for posts, assignments, submissions
+
+Backend:
+
+- Use multer (Node.js) or similar
+
+- Store files in /uploads or cloud (e.g., S3)
+
+- Store file URL in DB
+
+🔟 Dashboard
+
+What it does:
+
+- Shows all classes you own or joined
+
+Frontend:
+
+- Dashboard page after login
+
+Backend:
+
+- GET /api/classes (reuse)
